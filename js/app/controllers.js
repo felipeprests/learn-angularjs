@@ -4,25 +4,29 @@ angular.module("meuModulo")
 	$scope.titulo = "Sistema com Angular JS";
 
 	$scope.alunos = [
-		{nome:"Jeferson Machado", email:"jefinhoboy@gmail.com", nota1:12, nota2:52, nota3:89}
-		{nome:"Bruno Biluzitos", email:"biluzitos@gmail.com", nota1:12, nota2:52, nota3:89}
-		{nome:"José Raul de Quadros", email:"dequadros@gmail.com", nota1:12, nota2:52, nota3:89}
-		{nome:"Douglas Giovanella", email:"doug@gmail.com", nota1:12, nota2:52, nota3:89}
+		{nome:"Jeferson Machado", email:"jefinhoboy@gmail.com", nota1:12, nota2:52, nota3:89},
+		{nome:"Bruno Biluzitos", email:"biluzitos@gmail.com", nota1:12, nota2:52, nota3:89},
+		{nome:"José Raul de Quadros", email:"dequadros@gmail.com", nota1:12, nota2:52, nota3:89},
+		{nome:"Douglas Giovanella", email:"doug@gmail.com", nota1:12, nota2:52, nota3:89},
 		{nome:"Erick Safado", email:"erick@gmail.com", nota1:12, nota2:52, nota3:89}
 	];
 
 	var init = function(){
-		$scope.alunos = forEach(function(aluno){
+		$scope.alunos.forEach(function(aluno){
 			aluno.media = media(aluno);
 		});
 		limpaForm();
 	};
 
 	$scope.addAluno = function (Aluno) {
-		
+		Aluno.media = media(Aluno);
+		$scope.alunos.push(Aluno);
+		$("#modal1").modal('close');
+		limpaForm();
 	};
 
 	var alunoEditar;
+	$scope.editando = false;
 
 	$scope.salvarAluno = function (Aluno) {
 		alunoEditar.nome = Aluno.nome;
@@ -45,6 +49,13 @@ angular.module("meuModulo")
 		$('#modal1').modal('open');
 	};
 
+	$scope.editarAluno = function (Aluno) {
+		$scope.editando = true;
+		angular.copy(Aluno,$scope.Aluno);
+		$('#modal1').modal('open');
+		alunoEditar = Aluno;
+	};
+
 	$scope.deletarAluno = function (Aluno) {
 		for (var index in $scope.alunos) {
 			var aux = $scope.alunos[index];
@@ -59,6 +70,7 @@ angular.module("meuModulo")
 	};
 
 	init();
-
-	
+})
+.controller("contatoController",function ($scope) {
+	$scope.titulo = "Contato";
 })

@@ -1,4 +1,5 @@
 angular.module("meuModulo",['ngRoute'])
+
 .config(function ($routeProvider) {
 	$routeProvider
 	.when("/home",{
@@ -6,6 +7,9 @@ angular.module("meuModulo",['ngRoute'])
 		controller: "indexController"
 	})
 	.when("/contato",{
-		templateUrl:"templates/contato.html"
+		templateUrl:"templates/contato.html",
+		controller:"contatoController"
 	});
+
+	$routeProvider.otherwise({redirectTo:"/home"});
 })
