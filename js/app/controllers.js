@@ -21,7 +21,7 @@ angular.module("meuModulo")
 	$scope.addAluno = function (Aluno) {
 		Aluno.media = media(Aluno);
 		$scope.alunos.push(Aluno);
-		$("#modal1").modal('close');
+		$("#modal1").closeModal();
 		limpaForm();
 	};
 
@@ -35,7 +35,7 @@ angular.module("meuModulo")
 		alunoEditar.nota2 = Aluno.nome;
 		alunoEditar.nota3 = Aluno.nome;
 		alunoEditar.media = media(Aluno);
-		$("#modal1").modal('close');
+		$("#modal1").closeModal();
 	}
 
 	var media = function(Aluno){
@@ -46,13 +46,13 @@ angular.module("meuModulo")
 	$scope.abreAddAluno = function () {
 		$scope.editando = false;
 		limpaForm();
-		$('#modal1').modal('open');
+		$('#modal1').openModal();
 	};
 
 	$scope.editarAluno = function (Aluno) {
 		$scope.editando = true;
 		angular.copy(Aluno,$scope.Aluno);
-		$('#modal1').modal('open');
+		$('#modal1').openModal();
 		alunoEditar = Aluno;
 	};
 
